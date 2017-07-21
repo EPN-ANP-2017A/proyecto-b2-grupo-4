@@ -62,5 +62,17 @@ class Goles
     {
         return $this->numero;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Jugador", inversedBy="id")
+     * @ORM\JoinColumn(name="jugador_id", referencedColumnName="id")
+     */
+    private $jugador;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Partido", inversedBy="id")
+     * @ORM\JoinColumn(name="partido_id", referencedColumnName="id")
+     */
+    private $partido;
 }
 

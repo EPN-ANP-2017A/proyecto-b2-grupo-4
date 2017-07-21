@@ -93,5 +93,43 @@ class Partido
     {
         return $this->hora;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="id")
+     * @ORM\JoinColumn(name="equipo_local_id", referencedColumnName="id")
+     */
+    private $equipo_local;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="id")
+     * @ORM\JoinColumn(name="equipo_visitante_id", referencedColumnName="id")
+     */
+    private $equipo_visitante;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Estadio", inversedBy="id")
+     * @ORM\JoinColumn(name="estadio_id", referencedColumnName="id")
+     */
+    private $estadio;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tarjetas", mappedBy="id")
+     */
+    private $tarjeta;
+
+    public function __construct()
+    {
+        $this->tarjeta = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Goles", mappedBy="id")
+     */
+    private $gol;
+
+    public function __construct5()
+    {
+        $this->gol = new ArrayCollection();
+    }
 }
 

@@ -62,5 +62,15 @@ class Rol
     {
         return $this->nombre;
     }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Usuario", mappedBy="id")
+     */
+    private $usuario;
+
+    public function __construct()
+    {
+        $this->usuario = new ArrayCollection();
+    }
 }
 

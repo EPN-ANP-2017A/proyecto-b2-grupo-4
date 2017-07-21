@@ -124,5 +124,26 @@ class Estadio
     {
         return $this->estado;
     }
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Equipo", mappedBy="id")
+     */
+    private $equipo;
+
+    public function __construct()
+    {
+        $this->equipo = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="id")
+     */
+    private $partido;
+
+    public function __construct4()
+    {
+        $this->partido = new ArrayCollection();
+    }
+
 }
 

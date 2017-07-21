@@ -93,5 +93,37 @@ class Jugador
     {
         return $this->nombre;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario", inversedBy="id")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $usuario;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="id")
+     * @ORM\JoinColumn(name="equipo_id", referencedColumnName="id")
+     */
+    private $equipo;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tarjetas", mappedBy="id")
+     */
+    private $tarjeta;
+
+    public function __construct()
+    {
+        $this->tarjeta = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Goles", mappedBy="id")
+     */
+    private $gol;
+
+    public function __construct6()
+    {
+        $this->gol = new ArrayCollection();
+    }
 }
 

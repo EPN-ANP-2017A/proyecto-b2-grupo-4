@@ -124,5 +124,32 @@ class Usuario
     {
         return $this->password;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rol", inversedBy="id")
+     * @ORM\JoinColumn(name="rol_id", referencedColumnName="id")
+     */
+    private $rol;
+
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Jugador", mappedBy="id")
+     */
+    private $jugador;
+
+    public function __construct()
+    {
+        $this->jugador = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Equipo", mappedBy="id")
+     */
+    private $equipo;
+
+    public function __construct2()
+    {
+        $this->equipo = new ArrayCollection();
+    }
 }
 

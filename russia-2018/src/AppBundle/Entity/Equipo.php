@@ -62,5 +62,37 @@ class Equipo
     {
         return $this->nombre;
     }
+
+    /**
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Usuario", inversedBy="id")
+     * @ORM\JoinColumn(name="usuario_id", referencedColumnName="id")
+     */
+    private $rol;
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Jugador", mappedBy="id")
+     */
+    private $jugador;
+
+    public function __construct()
+    {
+        $this->jugador = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="id")
+     */
+    private $partido;
+
+    public function __construct3()
+    {
+        $this->partido = new ArrayCollection();
+    }
+
+    /**
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Estadio", inversedBy="id")
+     * @ORM\JoinColumn(name="estadio_id", referencedColumnName="id")
+     */
+    private $estadio;
 }
 
