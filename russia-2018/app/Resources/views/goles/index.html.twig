@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Goles list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Numero</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for gole in goles %}
+            <tr>
+                <td><a href="{{ path('goles_show', { 'id': gole.id }) }}">{{ gole.id }}</a></td>
+                <td>{{ gole.numero }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('goles_show', { 'id': gole.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('goles_edit', { 'id': gole.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('goles_new') }}">Create a new gole</a>
+        </li>
+    </ul>
+{% endblock %}

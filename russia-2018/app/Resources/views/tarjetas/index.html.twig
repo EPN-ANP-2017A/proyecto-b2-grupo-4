@@ -1,0 +1,41 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Tarjetas list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Amarillas</th>
+                <th>Rojas</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for tarjeta in tarjetas %}
+            <tr>
+                <td><a href="{{ path('tarjetas_show', { 'id': tarjeta.id }) }}">{{ tarjeta.id }}</a></td>
+                <td>{{ tarjeta.amarillas }}</td>
+                <td>{{ tarjeta.rojas }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('tarjetas_show', { 'id': tarjeta.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('tarjetas_edit', { 'id': tarjeta.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('tarjetas_new') }}">Create a new tarjeta</a>
+        </li>
+    </ul>
+{% endblock %}

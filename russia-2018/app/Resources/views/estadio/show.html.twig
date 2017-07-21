@@ -1,0 +1,40 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Estadio</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ estadio.id }}</td>
+            </tr>
+            <tr>
+                <th>Nombre</th>
+                <td>{{ estadio.nombre }}</td>
+            </tr>
+            <tr>
+                <th>Direccion</th>
+                <td>{{ estadio.direccion }}</td>
+            </tr>
+            <tr>
+                <th>Estado</th>
+                <td>{% if estadio.estado %}Yes{% else %}No{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('estadio_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('estadio_edit', { 'id': estadio.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

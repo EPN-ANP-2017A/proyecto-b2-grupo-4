@@ -74,18 +74,14 @@ class Equipo
      */
     private $jugador;
 
-    public function __construct()
-    {
-        $this->jugador = new ArrayCollection();
-    }
-
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="id")
      */
     private $partido;
 
-    public function __construct3()
+    public function __construct()
     {
+        $this->jugador = new ArrayCollection();
         $this->partido = new ArrayCollection();
     }
 

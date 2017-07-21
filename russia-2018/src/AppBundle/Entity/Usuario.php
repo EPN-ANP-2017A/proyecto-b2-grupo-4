@@ -131,24 +131,20 @@ class Usuario
      */
     private $rol;
 
-
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Jugador", mappedBy="id")
      */
     private $jugador;
 
-    public function __construct()
-    {
-        $this->jugador = new ArrayCollection();
-    }
 
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Equipo", mappedBy="id")
      */
     private $equipo;
 
-    public function __construct2()
+    public function __construct()
     {
+        $this->jugador = new ArrayCollection();
         $this->equipo = new ArrayCollection();
     }
 }

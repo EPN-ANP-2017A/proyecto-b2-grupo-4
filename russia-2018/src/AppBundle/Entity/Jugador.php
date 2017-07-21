@@ -111,18 +111,14 @@ class Jugador
      */
     private $tarjeta;
 
-    public function __construct()
-    {
-        $this->tarjeta = new ArrayCollection();
-    }
-
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Goles", mappedBy="id")
      */
     private $gol;
 
-    public function __construct6()
+    public function __construct()
     {
+        $this->tarjeta = new ArrayCollection();
         $this->gol = new ArrayCollection();
     }
 }

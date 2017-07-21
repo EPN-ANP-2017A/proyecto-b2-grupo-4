@@ -130,18 +130,14 @@ class Estadio
      */
     private $equipo;
 
-    public function __construct()
-    {
-        $this->equipo = new ArrayCollection();
-    }
-
     /**
      * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="id")
      */
     private $partido;
 
-    public function __construct4()
+    public function __construct()
     {
+        $this->equipo = new ArrayCollection();
         $this->partido = new ArrayCollection();
     }
 
