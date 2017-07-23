@@ -95,37 +95,176 @@ class Partido
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="partidos_local")
      * @ORM\JoinColumn(name="equipo_local_id", referencedColumnName="id")
      */
     private $equipo_local;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Equipo", inversedBy="partidos_visitante")
      * @ORM\JoinColumn(name="equipo_visitante_id", referencedColumnName="id")
      */
     private $equipo_visitante;
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Estadio", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Estadio", inversedBy="partidos")
      * @ORM\JoinColumn(name="estadio_id", referencedColumnName="id")
      */
     private $estadio;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tarjetas", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Tarjetas", mappedBy="partido")
      */
-    private $tarjeta;
+    private $tarjetas;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Goles", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Goles", mappedBy="partido")
      */
-    private $gol;
+    private $goles;
 
     public function __construct()
     {
-        $this->tarjeta = new ArrayCollection();
-        $this->gol = new ArrayCollection();
+        $this->tarjetas = new ArrayCollection();
+        $this->goles = new ArrayCollection();
+    }
+
+    /**
+     * Set equipoLocal
+     *
+     * @param \AppBundle\Entity\Equipo $equipoLocal
+     *
+     * @return Partido
+     */
+    public function setEquipoLocal(\AppBundle\Entity\Equipo $equipoLocal = null)
+    {
+        $this->equipo_local = $equipoLocal;
+
+        return $this;
+    }
+
+    /**
+     * Get equipoLocal
+     *
+     * @return \AppBundle\Entity\Equipo
+     */
+    public function getEquipoLocal()
+    {
+        return $this->equipo_local;
+    }
+
+    /**
+     * Set equipoVisitante
+     *
+     * @param \AppBundle\Entity\Equipo $equipoVisitante
+     *
+     * @return Partido
+     */
+    public function setEquipoVisitante(\AppBundle\Entity\Equipo $equipoVisitante = null)
+    {
+        $this->equipo_visitante = $equipoVisitante;
+
+        return $this;
+    }
+
+    /**
+     * Get equipoVisitante
+     *
+     * @return \AppBundle\Entity\Equipo
+     */
+    public function getEquipoVisitante()
+    {
+        return $this->equipo_visitante;
+    }
+
+    /**
+     * Set estadio
+     *
+     * @param \AppBundle\Entity\Estadio $estadio
+     *
+     * @return Partido
+     */
+    public function setEstadio(\AppBundle\Entity\Estadio $estadio = null)
+    {
+        $this->estadio = $estadio;
+
+        return $this;
+    }
+
+    /**
+     * Get estadio
+     *
+     * @return \AppBundle\Entity\Estadio
+     */
+    public function getEstadio()
+    {
+        return $this->estadio;
+    }
+
+    /**
+     * Add tarjeta
+     *
+     * @param \AppBundle\Entity\Tarjetas $tarjeta
+     *
+     * @return Partido
+     */
+    public function addTarjeta(\AppBundle\Entity\Tarjetas $tarjeta)
+    {
+        $this->tarjetas[] = $tarjeta;
+
+        return $this;
+    }
+
+    /**
+     * Remove tarjeta
+     *
+     * @param \AppBundle\Entity\Tarjetas $tarjeta
+     */
+    public function removeTarjeta(\AppBundle\Entity\Tarjetas $tarjeta)
+    {
+        $this->tarjetas->removeElement($tarjeta);
+    }
+
+    /**
+     * Get tarjetas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTarjetas()
+    {
+        return $this->tarjetas;
+    }
+
+    /**
+     * Add gole
+     *
+     * @param \AppBundle\Entity\Goles $gole
+     *
+     * @return Partido
+     */
+    public function addGole(\AppBundle\Entity\Goles $gole)
+    {
+        $this->goles[] = $gole;
+
+        return $this;
+    }
+
+    /**
+     * Remove gole
+     *
+     * @param \AppBundle\Entity\Goles $gole
+     */
+    public function removeGole(\AppBundle\Entity\Goles $gole)
+    {
+        $this->goles->removeElement($gole);
+    }
+
+    /**
+     * Get goles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGoles()
+    {
+        return $this->goles;
     }
 }
-

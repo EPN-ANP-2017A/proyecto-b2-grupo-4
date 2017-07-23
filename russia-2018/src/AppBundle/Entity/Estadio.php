@@ -126,20 +126,77 @@ class Estadio
     }
 
     /**
-     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Equipo", mappedBy="id")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\Equipo", mappedBy="estadio")
      */
-    private $equipo;
+    private $equipos;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Partido", mappedBy="estadio")
      */
-    private $partido;
+    private $partidos;
 
     public function __construct()
     {
-        $this->equipo = new ArrayCollection();
-        $this->partido = new ArrayCollection();
+        $this->equipos = new ArrayCollection();
+        $this->partidos = new ArrayCollection();
     }
 
-}
 
+    /**
+     * Set equipos
+     *
+     * @param \AppBundle\Entity\Equipo $equipos
+     *
+     * @return Estadio
+     */
+    public function setEquipos(\AppBundle\Entity\Equipo $equipos = null)
+    {
+        $this->equipos = $equipos;
+
+        return $this;
+    }
+
+    /**
+     * Get equipos
+     *
+     * @return \AppBundle\Entity\Equipo
+     */
+    public function getEquipos()
+    {
+        return $this->equipos;
+    }
+
+    /**
+     * Add partido
+     *
+     * @param \AppBundle\Entity\Partido $partido
+     *
+     * @return Estadio
+     */
+    public function addPartido(\AppBundle\Entity\Partido $partido)
+    {
+        $this->partidos[] = $partido;
+
+        return $this;
+    }
+
+    /**
+     * Remove partido
+     *
+     * @param \AppBundle\Entity\Partido $partido
+     */
+    public function removePartido(\AppBundle\Entity\Partido $partido)
+    {
+        $this->partidos->removeElement($partido);
+    }
+
+    /**
+     * Get partidos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPartidos()
+    {
+        return $this->partidos;
+    }
+}

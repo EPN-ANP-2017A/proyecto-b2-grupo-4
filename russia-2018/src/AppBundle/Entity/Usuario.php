@@ -126,26 +126,117 @@ class Usuario
     }
 
     /**
-     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rol", inversedBy="id")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\Rol", inversedBy="usuarios")
      * @ORM\JoinColumn(name="rol_id", referencedColumnName="id")
      */
     private $rol;
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Jugador", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Jugador", mappedBy="usuario")
      */
-    private $jugador;
+    private $jugadores;
 
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Equipo", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Equipo", mappedBy="usuario")
      */
-    private $equipo;
+    private $equipos;
 
     public function __construct()
     {
-        $this->jugador = new ArrayCollection();
-        $this->equipo = new ArrayCollection();
+        $this->jugadores = new ArrayCollection();
+        $this->equipos = new ArrayCollection();
+    }
+
+    /**
+     * Set rol
+     *
+     * @param \AppBundle\Entity\Rol $rol
+     *
+     * @return Usuario
+     */
+    public function setRol(\AppBundle\Entity\Rol $rol = null)
+    {
+        $this->rol = $rol;
+
+        return $this;
+    }
+
+    /**
+     * Get rol
+     *
+     * @return \AppBundle\Entity\Rol
+     */
+    public function getRol()
+    {
+        return $this->rol;
+    }
+
+    /**
+     * Add jugadore
+     *
+     * @param \AppBundle\Entity\Jugador $jugadore
+     *
+     * @return Usuario
+     */
+    public function addJugadore(\AppBundle\Entity\Jugador $jugadore)
+    {
+        $this->jugadores[] = $jugadore;
+
+        return $this;
+    }
+
+    /**
+     * Remove jugadore
+     *
+     * @param \AppBundle\Entity\Jugador $jugadore
+     */
+    public function removeJugadore(\AppBundle\Entity\Jugador $jugadore)
+    {
+        $this->jugadores->removeElement($jugadore);
+    }
+
+    /**
+     * Get jugadores
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getJugadores()
+    {
+        return $this->jugadores;
+    }
+
+    /**
+     * Add equipo
+     *
+     * @param \AppBundle\Entity\Equipo $equipo
+     *
+     * @return Usuario
+     */
+    public function addEquipo(\AppBundle\Entity\Equipo $equipo)
+    {
+        $this->equipos[] = $equipo;
+
+        return $this;
+    }
+
+    /**
+     * Remove equipo
+     *
+     * @param \AppBundle\Entity\Equipo $equipo
+     */
+    public function removeEquipo(\AppBundle\Entity\Equipo $equipo)
+    {
+        $this->equipos->removeElement($equipo);
+    }
+
+    /**
+     * Get equipos
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getEquipos()
+    {
+        return $this->equipos;
     }
 }
-

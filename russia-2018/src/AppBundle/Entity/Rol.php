@@ -64,13 +64,46 @@ class Rol
     }
 
     /**
-     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Usuario", mappedBy="id")
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Usuario", mappedBy="rol")
      */
-    private $usuario;
+    private $usuarios;
 
     public function __construct()
     {
-        $this->usuario = new ArrayCollection();
+        $this->usuarios = new ArrayCollection();
+    }
+
+    /**
+     * Add usuario
+     *
+     * @param \AppBundle\Entity\Usuario $usuario
+     *
+     * @return Rol
+     */
+    public function addUsuario(\AppBundle\Entity\Usuario $usuario)
+    {
+        $this->usuarios[] = $usuario;
+
+        return $this;
+    }
+
+    /**
+     * Remove usuario
+     *
+     * @param \AppBundle\Entity\Usuario $usuario
+     */
+    public function removeUsuario(\AppBundle\Entity\Usuario $usuario)
+    {
+        $this->usuarios->removeElement($usuario);
+    }
+
+    /**
+     * Get usuarios
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getUsuarios()
+    {
+        return $this->usuarios;
     }
 }
-
