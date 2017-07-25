@@ -1,43 +1,57 @@
 {% extends 'base.html.twig' %}
 
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
 {% block body %}
-    <h1>Estadios list</h1>
+    <div class="container">
+        <div class="jumbotron"><h1>Estadios list</h1>
 
-    <table>
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nombre</th>
-                <th>Direccion</th>
-                <th>Estado</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for estadio in estadios %}
-            <tr>
-                <td><a href="{{ path('estadio_show', { 'id': estadio.id }) }}">{{ estadio.id }}</a></td>
-                <td>{{ estadio.nombre }}</td>
-                <td>{{ estadio.direccion }}</td>
-                <td>{% if estadio.estado %}Yes{% else %}No{% endif %}</td>
-                <td>
-                    <ul>
-                        <li>
-                            <a href="{{ path('estadio_show', { 'id': estadio.id }) }}">show</a>
-                        </li>
-                        <li>
-                            <a href="{{ path('estadio_edit', { 'id': estadio.id }) }}">edit</a>
-                        </li>
-                    </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Estado</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for estadio in estadios %}
+                    <tr>
+                        <td><a href="{{ path('estadio_show', { 'id': estadio.id }) }}">{{ estadio.id }}</a></td>
+                        <td>{{ estadio.nombre }}</td>
+                        <td>{{ estadio.direccion }}</td>
+                        <td>{% if estadio.estado %}Yes{% else %}No{% endif %}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('estadio_show', { 'id': estadio.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('estadio_edit', { 'id': estadio.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('estadio_new') }}">Create a new estadio</a>
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('estadio_new') }}">Create a new estadio</a>
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}

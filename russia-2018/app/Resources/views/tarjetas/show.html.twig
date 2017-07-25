@@ -1,36 +1,50 @@
 {% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
 
 {% block body %}
-    <h1>Tarjeta</h1>
+    <div class="container">
+        <div class="jumbotron">
+            <h1>Tarjeta</h1>
 
-    <table>
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ tarjeta.id }}</td>
-            </tr>
-            <tr>
-                <th>Amarillas</th>
-                <td>{{ tarjeta.amarillas }}</td>
-            </tr>
-            <tr>
-                <th>Rojas</th>
-                <td>{{ tarjeta.rojas }}</td>
-            </tr>
-        </tbody>
-    </table>
+            <table>
+                <tbody>
+                <tr>
+                    <th>Id</th>
+                    <td>{{ tarjeta.id }}</td>
+                </tr>
+                <tr>
+                    <th>Amarillas</th>
+                    <td>{{ tarjeta.amarillas }}</td>
+                </tr>
+                <tr>
+                    <th>Rojas</th>
+                    <td>{{ tarjeta.rojas }}</td>
+                </tr>
+                </tbody>
+            </table>
 
-    <ul>
-        <li>
-            <a href="{{ path('tarjetas_index') }}">Back to the list</a>
-        </li>
-        <li>
-            <a href="{{ path('tarjetas_edit', { 'id': tarjeta.id }) }}">Edit</a>
-        </li>
-        <li>
-            {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
-            {{ form_end(delete_form) }}
-        </li>
-    </ul>
+            <ul>
+                <li>
+                    <a href="{{ path('tarjetas_index') }}">Back to the list</a>
+                </li>
+                <li>
+                    <a href="{{ path('tarjetas_edit', { 'id': tarjeta.id }) }}">Edit</a>
+                </li>
+                <li>
+                    {{ form_start(delete_form) }}
+                    <input type="submit" value="Delete">
+                    {{ form_end(delete_form) }}
+                </li>
+            </ul>
+        </div>
+    </div>
 {% endblock %}
