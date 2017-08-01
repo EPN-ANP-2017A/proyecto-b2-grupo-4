@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script src="{{ asset('js/main.js') }}"></script>
+{% endblock %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <div class="jumbotron"><h1>Tarjetasxpartidos list</h1>
+
+            <table>
+                <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Tarjetasamarillas</th>
+                    <th>Tarjetasrojas</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tarjetasXPartido in tarjetasXPartidos %}
+                    <tr>
+                        <td>
+                            <a href="{{ path('tarjetasxpartido_show', { 'id': tarjetasXPartido.id }) }}">{{ tarjetasXPartido.id }}</a>
+                        </td>
+                        <td>{{ tarjetasXPartido.tarjetasAmarillas }}</td>
+                        <td>{{ tarjetasXPartido.tarjetasRojas }}</td>
+                        <td>
+                            <ul>
+                                <li>
+                                    <a href="{{ path('tarjetasxpartido_show', { 'id': tarjetasXPartido.id }) }}">show</a>
+                                </li>
+                                <li>
+                                    <a href="{{ path('tarjetasxpartido_edit', { 'id': tarjetasXPartido.id }) }}">edit</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+
+            <ul>
+                <li>
+                    <a href="{{ path('tarjetasxpartido_new') }}">Create a new tarjetasXPartido</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+{% endblock %}
