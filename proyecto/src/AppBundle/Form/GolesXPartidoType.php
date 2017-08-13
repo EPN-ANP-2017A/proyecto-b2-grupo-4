@@ -18,12 +18,12 @@ class GolesXPartidoType extends AbstractType
             ->add('jugador', EntityType::class, array(
                 'class' => 'AppBundle:Jugador',
                 'choice_label' => 'nombre',
-                'placeholder' => 'Seleccione un cliente'
+                'placeholder' => 'Seleccione un jugador'
             ))
             ->add('partido', EntityType::class, array(
                 'class' => 'AppBundle:Partido',
-                'choice_label' => 'nombre',
-                'placeholder' => 'Seleccione un cliente'
+                'choice_label' => 'id',
+                'placeholder' => 'Seleccione un partido'
             ));
     }
 

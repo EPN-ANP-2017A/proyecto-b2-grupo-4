@@ -18,12 +18,12 @@ class TarjetasXPartidoType extends AbstractType
             ->add('tarjetasRojas')
             ->add('jugador', EntityType::class, array(
                 'class' => 'AppBundle:Jugador',
-                'choice_label' => 'nombre',
+                'choice_label' => 'id',
                 'placeholder' => 'Seleccione un jugador'
             ))
             ->add('partido', EntityType::class, array(
                 'class' => 'AppBundle:Partido',
-                'choice_label' => 'nombre',
+                'choice_label' => 'id',
                 'placeholder' => 'Seleccione un partido'
             ));
     }
