@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Gole controller.
  *
- * @Route("goles")
+ * @Route("admin/goles")
  */
 class GolesController extends Controller
 {

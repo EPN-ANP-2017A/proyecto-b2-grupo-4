@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Partido controller.
  *
- * @Route("partido")
+ * @Route("admin/partido")
  */
 class PartidoController extends Controller
 {

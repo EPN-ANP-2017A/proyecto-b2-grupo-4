@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Jugador controller.
  *
- * @Route("jugador")
+ * @Route("admin/jugador")
  */
 class JugadorController extends Controller
 {

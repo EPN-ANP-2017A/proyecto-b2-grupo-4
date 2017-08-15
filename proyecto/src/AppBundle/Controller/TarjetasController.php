@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Tarjeta controller.
  *
- * @Route("tarjetas")
+ * @Route("admin/tarjetas")
  */
 class TarjetasController extends Controller
 {

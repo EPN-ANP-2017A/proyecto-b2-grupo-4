@@ -11,7 +11,7 @@
 {% endblock %}
 
 {% block body %}
-    <div class="container">
+    <div class="container-fluid">
         <nav class="navbar">
             <div class="navbar-default">
                 <ul class="nav nav-pills navbar-left">
@@ -40,120 +40,122 @@
                     <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver más</a></p>
                 </div>
             </div>
-            <div>
-                <h3>Equipo</h3>
-                <table class="table table-bordered">
-                    <tbody>
-                    {% for equipo in equipos %}
-                        <tr>
-                            <th>{{ equipo.nombre }}</th>
-                        </tr><br>
-                        {% for jugador in jugadors %}
-                            <tr>
-                                <th>Nombre</th>
-                                <th>Numero</th>
-                            </tr>
-                            {% if equipo.id == jugador.id %}
-
-                                <tr>
-                                    <td>{{ jugador.nombre }}</td>
-                                    <td>{{ jugador.numero }}</td>
-                                </tr>
-                            {% endif %}
-                        {% endfor %}
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <h3>Jugador</h3>
-                <table class="table table-bordered">
-                    <thead>
+        </div>
+    </div>
+    <div class="container">
+        <div>
+            <h3>Equipo</h3>
+            <table class="table table-bordered">
+                <tbody>
+                {% for equipo in equipos %}
                     <tr>
-                        <th>Nombre</th>
-                        <th>Numero</th>
-                        <th>Equipo</th>
-                    </tr>
-                    </thead>
-                    <tbody>
+                        <th>{{ equipo.nombre }}</th>
+                    </tr><br>
                     {% for jugador in jugadors %}
                         <tr>
-                            <td>{{ jugador.nombre }}</td>
-                            <td>{{ jugador.numero }}</td>
-                            <td>{{ jugador.equipo.nombre }}</td>
+                            <th>Nombre</th>
+                            <th>Numero</th>
+                        </tr>
+                        {% if equipo.id == jugador.id %}
 
-                        </tr>
+                            <tr>
+                                <td>{{ jugador.nombre }}</td>
+                                <td>{{ jugador.numero }}</td>
+                            </tr>
+                        {% endif %}
                     {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <h3>Partidos</h3>
-                <table class="table table-bordered">
-                    <thead>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Jugador</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Numero</th>
+                    <th>Equipo</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for jugador in jugadors %}
                     <tr>
-                        <th>Fecha</th>
-                        <th>Hora</th>
-                        <th>Equipo local</th>
-                        <th>Equipo visitante</th>
+                        <td>{{ jugador.nombre }}</td>
+                        <td>{{ jugador.numero }}</td>
+                        <td>{{ jugador.equipo.nombre }}</td>
+
                     </tr>
-                    </thead>
-                    <tbody>
-                    {% for partido in partidos %}
-                        <tr>
-                            <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d') }}{% endif %}</td>
-                            <td>{% if partido.hora %}{{ partido.hora|date('H:i:s') }}{% endif %}</td>
-                            <td>ojo izquierdo</td>
-                            <td>ojo derecho</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <h3>Goles</h3>
-                <table class="table table-bordered">
-                    <thead>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Partidos</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Fecha</th>
+                    <th>Hora</th>
+                    <th>Equipo local</th>
+                    <th>Equipo visitante</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for partido in partidos %}
                     <tr>
-                        <th>Numero</th>
-                        <th>Jugador</th>
-                        <th>Partido</th>
+                        <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d') }}{% endif %}</td>
+                        <td>{% if partido.hora %}{{ partido.hora|date('H:i:s') }}{% endif %}</td>
+                        <td>ojo izquierdo</td>
+                        <td>ojo derecho</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {% for gol in goles %}
-                        <tr>
-                            <td>{{ gol.numero }}</td>
-                            <td>{{ gol.jugador.nombre }}</td>
-                            <td>{{ gol.partido.id }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
-            <div>
-                <h3>Tarjetas</h3>
-                <table class="table table-bordered">
-                    <thead>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Goles</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Numero</th>
+                    <th>Jugador</th>
+                    <th>Partido</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for gol in goles %}
                     <tr>
-                        <th>Amarillas</th>
-                        <th>Rojas</th>
-                        <th>Jugador</th>
-                        <th>Partido</th>
+                        <td>{{ gol.numero }}</td>
+                        <td>{{ gol.jugador.nombre }}</td>
+                        <td>{{ gol.partido.id }}</td>
                     </tr>
-                    </thead>
-                    <tbody>
-                    {% for tarjeta in tarjetas %}
-                        <tr>
-                            <td>{{ tarjeta.amarillas }}</td>
-                            <td>{{ tarjeta.rojas }}</td>
-                            <td>{{ tarjeta.jugador.nombre }}</td>
-                            <td>{{ tarjeta.partido.id }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-            </div>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        <div>
+            <h3>Tarjetas</h3>
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th>Amarillas</th>
+                    <th>Rojas</th>
+                    <th>Jugador</th>
+                    <th>Partido</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tarjeta in tarjetas %}
+                    <tr>
+                        <td>{{ tarjeta.amarillas }}</td>
+                        <td>{{ tarjeta.rojas }}</td>
+                        <td>{{ tarjeta.jugador.nombre }}</td>
+                        <td>{{ tarjeta.partido.id }}</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
         </div>
     </div>
 {% endblock %}

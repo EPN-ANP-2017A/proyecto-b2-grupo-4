@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class DefaultController extends Controller
 {
@@ -31,5 +32,29 @@ class DefaultController extends Controller
             'goles' => $goles,
             'tarjetas' => $tarjetas,
         ));
+    }
+
+    /**
+     * @Route("/admin")
+     */
+    public function adminAction()
+    {
+        return new Response(
+            '<html>
+                    <body>
+                    <div>
+                    <h4>Admin page!</h4>
+                    </div>
+                    <div>
+                        <ol>
+                            <li><a href="admin/equipo">Administrar equipos</a></li>
+                            <li><a href="admin/jugador">Administrar jugadores</a></li>
+                            <li><a href="admin/partido">Administrar partidos</a></li>
+                            <li><a href="admin/goles">Administrar goles</a></li>
+                            <li><a href="admin/tarjetas">Administrar tarjetas</a></li>
+                        </ol>
+                    </div>
+                    </body>
+                    </html>');
     }
 }

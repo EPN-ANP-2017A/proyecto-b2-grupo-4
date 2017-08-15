@@ -10,7 +10,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component
 /**
  * Equipo controller.
  *
- * @Route("equipo")
+ * @Route("admin/equipo")
  */
 class EquipoController extends Controller
 {
