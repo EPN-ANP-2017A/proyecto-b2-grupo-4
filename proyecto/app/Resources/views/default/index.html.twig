@@ -50,12 +50,13 @@
                 {% for equipo in equipos %}
                     <tr>
                         <th>{{ equipo.nombre }}</th>
-                    </tr><br>
+                    </tr>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Numero</th>
+                    </tr>
                     {% for jugador in jugadors %}
-                        <tr>
-                            <th>Nombre</th>
-                            <th>Numero</th>
-                        </tr>
+
                         {% if equipo.id == jugador.id %}
 
                             <tr>
