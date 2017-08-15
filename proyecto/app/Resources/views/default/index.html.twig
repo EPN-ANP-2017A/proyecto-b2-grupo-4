@@ -12,8 +12,34 @@
 
 {% block body %}
     <div class="container">
+        <nav class="navbar">
+            <div class="navbar-default">
+                <ul class="nav nav-pills navbar-left">
+                    <li><a href="#">Mundial de futbol</a></li>
+                </ul>
+                <ul class="nav nav-pills navbar-right">
+                    {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                        {#{{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |#}
+                        <a href="{{ path('fos_user_security_logout') }}">
+                            {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                        </a>
+                    {% else %}
+                        <li><a href="{{ path('fos_user_registration_register') }}">Register</a></li>
+                        <li>
+                            <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </nav>
         <div>
-            <h1>Futbol</h1>
+            <div class="jumbotron">
+                <div class="text-center">
+                    <h1>Mundial de futbol</h1>
+                    <p>...</p>
+                    <p><a class="btn btn-primary btn-lg" href="#" role="button">Ver más</a></p>
+                </div>
+            </div>
             <div>
                 <h3>Equipo</h3>
                 <table class="table table-bordered">
