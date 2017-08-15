@@ -43,16 +43,24 @@
             <div>
                 <h3>Equipo</h3>
                 <table class="table table-bordered">
-                    <thead>
-                    <tr>
-                        <th>Nombre</th>
-                    </tr>
-                    </thead>
                     <tbody>
                     {% for equipo in equipos %}
                         <tr>
-                            <td>{{ equipo.nombre }}</td>
-                        </tr>
+                            <th>{{ equipo.nombre }}</th>
+                        </tr><br>
+                        {% for jugador in jugadors %}
+                            <tr>
+                                <th>Nombre</th>
+                                <th>Numero</th>
+                            </tr>
+                            {% if equipo.id == jugador.id %}
+
+                                <tr>
+                                    <td>{{ jugador.nombre }}</td>
+                                    <td>{{ jugador.numero }}</td>
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
                     {% endfor %}
                     </tbody>
                 </table>
