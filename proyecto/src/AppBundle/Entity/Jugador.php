@@ -25,14 +25,14 @@ class Jugador
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=30, unique=true)
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="numero", type="integer", unique=true)
+     * @ORM\Column(name="numero", type="string", length=255, unique=true)
      */
     private $numero;
 
@@ -74,7 +74,7 @@ class Jugador
     /**
      * Set numero
      *
-     * @param integer $numero
+     * @param string $numero
      *
      * @return Jugador
      */
@@ -88,7 +88,7 @@ class Jugador
     /**
      * Get numero
      *
-     * @return int
+     * @return string
      */
     public function getNumero()
     {
@@ -100,24 +100,6 @@ class Jugador
      * @ORM\JoinColumn(name="equipo_id", referencedColumnName="id")
      */
     private $equipo;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity="TarjetasXPatido", mappedBy="jugador")
-//     */
-//    private $tarjetas;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity="GolesXPatido", mappedBy="jugador")
-//     */
-//    private $goles;
-//
-//
-//    public function __construct()
-//    {
-////        $this->tarjetas = new ArrayCollection();
-//        $this->goles = new ArrayCollection();
-//    }
-
 
     /**
      * Set equipo
@@ -141,5 +123,89 @@ class Jugador
     public function getEquipo()
     {
         return $this->equipo;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Tarjetas", mappedBy="jugador")
+     */
+    private $tarjetas;
+
+    /**
+     * Add tarjeta
+     *
+     * @param \AppBundle\Entity\Tarjetas $tarjeta
+     *
+     * @return Jugador
+     */
+    public function addTarjeta(\AppBundle\Entity\Tarjetas $tarjeta)
+    {
+        $this->tarjetas[] = $tarjeta;
+
+        return $this;
+    }
+
+    /**
+     * Remove tarjeta
+     *
+     * @param \AppBundle\Entity\Tarjetas $tarjeta
+     */
+    public function removeTarjeta(\AppBundle\Entity\Tarjetas $tarjeta)
+    {
+        $this->tarjetas->removeElement($tarjeta);
+    }
+
+    /**
+     * Get tarjetas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTarjetas()
+    {
+        return $this->tarjetas;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Goles", mappedBy="jugador")
+     */
+    private $goles;
+
+    public function __construct()
+    {
+        $this->tarjetas = new ArrayCollection();
+        $this->goles = new ArrayCollection();
+    }
+
+    /**
+     * Add gole
+     *
+     * @param \AppBundle\Entity\Goles $gole
+     *
+     * @return Jugador
+     */
+    public function addGole(\AppBundle\Entity\Goles $gole)
+    {
+        $this->goles[] = $gole;
+
+        return $this;
+    }
+
+    /**
+     * Remove gole
+     *
+     * @param \AppBundle\Entity\Goles $gole
+     */
+    public function removeGole(\AppBundle\Entity\Goles $gole)
+    {
+        $this->goles->removeElement($gole);
+    }
+
+    /**
+     * Get goles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGoles()
+    {
+        return $this->goles;
     }
 }

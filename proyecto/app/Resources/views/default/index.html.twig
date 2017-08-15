@@ -12,43 +12,11 @@
 
 {% block body %}
     <div class="container">
-    <div id="login" class="nav navbar">
-        <div class="navbar-left">
-            <div class="img-responsive">
-                <img src="{{ asset('img/logotipo.jpg') }}" alt="">
-            </div>
-        </div>
-        <div class="navbar-right">
-                <li><a class="btn btn-default" href="{{ path('equipo_index') }}">Ingresar</a></li>
-                <li><a class="btn btn-default" href="{{ path('equipo_index') }}">Registrar</a></li>
-        </div>
-    </div>
-    <div class="jumbotron">
-    <div id="wrapper">
-        <div id="container">
+        <div>
+            <h1>Futbol</h1>
             <div>
-                <h2>Tabla de jugadores</h2>
-                <table class="table table-bordered table-responsive">
-                    <thead class="table table-bordered table-responsive">
-                    <tr>
-                        <th>Nombre</th>
-                        <th>Numero</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% for jugador in jugadors %}
-                        <tr>
-                            <td>{{ jugador.nombre }}</td>
-                            <td>{{ jugador.numero }}</td>
-                        </tr>
-                    {% endfor %}
-                    </tbody>
-                </table>
-
-            </div>
-            <div>
-                <h2>Tabla de equipos</h2>
-                <table class="table table-bordered table-responsive">
+                <h3>Equipo</h3>
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Nombre</th>
@@ -64,12 +32,36 @@
                 </table>
             </div>
             <div>
-                <h2>Tabla de partidos</h2>
-                <table class="table table-bordered table-responsive">
+                <h3>Jugador</h3>
+                <table class="table table-bordered">
+                    <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>Numero</th>
+                        <th>Equipo</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for jugador in jugadors %}
+                        <tr>
+                            <td>{{ jugador.nombre }}</td>
+                            <td>{{ jugador.numero }}</td>
+                            <td>{{ jugador.equipo.nombre }}</td>
+
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            <div>
+                <h3>Partidos</h3>
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Fecha</th>
                         <th>Hora</th>
+                        <th>Equipo local</th>
+                        <th>Equipo visitante</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -77,42 +69,52 @@
                         <tr>
                             <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d') }}{% endif %}</td>
                             <td>{% if partido.hora %}{{ partido.hora|date('H:i:s') }}{% endif %}</td>
+                            <td>ojo izquierdo</td>
+                            <td>ojo derecho</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
             <div>
-                <h2>Tabla de goles por partido</h2>
-                <table class="table table-bordered table-responsive">
+                <h3>Goles</h3>
+                <table class="table table-bordered">
                     <thead>
                     <tr>
                         <th>Numero</th>
+                        <th>Jugador</th>
+                        <th>Partido</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for golesXPartido in golesXPartidos %}
+                    {% for gol in goles %}
                         <tr>
-                            <td>{{ golesXPartido.numero }}</td>
+                            <td>{{ gol.numero }}</td>
+                            <td>{{ gol.jugador.nombre }}</td>
+                            <td>{{ gol.partido.id }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
                 </table>
             </div>
             <div>
-                <h2>Tabla de tarjetas por partido</h2>
-                <table class="table table-bordered table-responsive">
+                <h3>Tarjetas</h3>
+                <table class="table table-bordered">
                     <thead>
                     <tr>
-                        <th>Tarjetasamarillas</th>
-                        <th>Tarjetasrojas</th>
+                        <th>Amarillas</th>
+                        <th>Rojas</th>
+                        <th>Jugador</th>
+                        <th>Partido</th>
                     </tr>
                     </thead>
                     <tbody>
-                    {% for tarjetasXPartido in tarjetasXPartidos %}
+                    {% for tarjeta in tarjetas %}
                         <tr>
-                            <td>{{ tarjetasXPartido.tarjetasAmarillas }}</td>
-                            <td>{{ tarjetasXPartido.tarjetasRojas }}</td>
+                            <td>{{ tarjeta.amarillas }}</td>
+                            <td>{{ tarjeta.rojas }}</td>
+                            <td>{{ tarjeta.jugador.nombre }}</td>
+                            <td>{{ tarjeta.partido.id }}</td>
                         </tr>
                     {% endfor %}
                     </tbody>
@@ -121,3 +123,4 @@
         </div>
     </div>
 {% endblock %}
+

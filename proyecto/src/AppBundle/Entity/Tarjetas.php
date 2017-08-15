@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * TarjetasXPartido
+ * Tarjetas
  *
- * @ORM\Table(name="tarjetas_x_partido")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\TarjetasXPartidoRepository")
+ * @ORM\Table(name="tarjetas")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\TarjetasRepository")
  */
-class TarjetasXPartido
+class Tarjetas
 {
     /**
      * @var int
@@ -24,16 +24,16 @@ class TarjetasXPartido
     /**
      * @var int
      *
-     * @ORM\Column(name="tarjetas_amarillas", type="integer")
+     * @ORM\Column(name="amarillas", type="integer")
      */
-    private $tarjetasAmarillas;
+    private $amarillas;
 
     /**
      * @var int
      *
-     * @ORM\Column(name="tarjetas_rojas", type="integer")
+     * @ORM\Column(name="rojas", type="integer")
      */
-    private $tarjetasRojas;
+    private $rojas;
 
 
     /**
@@ -47,51 +47,51 @@ class TarjetasXPartido
     }
 
     /**
-     * Set tarjetasAmarillas
+     * Set amarillas
      *
-     * @param integer $tarjetasAmarillas
+     * @param integer $amarillas
      *
-     * @return TarjetasXPartido
+     * @return Tarjetas
      */
-    public function setTarjetasAmarillas($tarjetasAmarillas)
+    public function setAmarillas($amarillas)
     {
-        $this->tarjetasAmarillas = $tarjetasAmarillas;
+        $this->amarillas = $amarillas;
 
         return $this;
     }
 
     /**
-     * Get tarjetasAmarillas
+     * Get amarillas
      *
      * @return int
      */
-    public function getTarjetasAmarillas()
+    public function getAmarillas()
     {
-        return $this->tarjetasAmarillas;
+        return $this->amarillas;
     }
 
     /**
-     * Set tarjetasRojas
+     * Set rojas
      *
-     * @param integer $tarjetasRojas
+     * @param integer $rojas
      *
-     * @return TarjetasXPartido
+     * @return Tarjetas
      */
-    public function setTarjetasRojas($tarjetasRojas)
+    public function setRojas($rojas)
     {
-        $this->tarjetasRojas = $tarjetasRojas;
+        $this->rojas = $rojas;
 
         return $this;
     }
 
     /**
-     * Get tarjetasRojas
+     * Get rojas
      *
      * @return int
      */
-    public function getTarjetasRojas()
+    public function getRojas()
     {
-        return $this->tarjetasRojas;
+        return $this->rojas;
     }
 
     /**
@@ -101,17 +101,11 @@ class TarjetasXPartido
     private $jugador;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Partido", inversedBy="tarjetas")
-     * @ORM\JoinColumn(name="partido_id", referencedColumnName="id")
-     */
-    private $partido;
-
-    /**
      * Set jugador
      *
      * @param \AppBundle\Entity\Jugador $jugador
      *
-     * @return TarjetasXPartido
+     * @return Tarjetas
      */
     public function setJugador(\AppBundle\Entity\Jugador $jugador = null)
     {
@@ -131,11 +125,17 @@ class TarjetasXPartido
     }
 
     /**
+     * @ORM\ManyToOne(targetEntity="Partido", inversedBy="tarjetas")
+     * @ORM\JoinColumn(name="partido_id", referencedColumnName="id")
+     */
+    private $partido;
+
+    /**
      * Set partido
      *
      * @param \AppBundle\Entity\Partido $partido
      *
-     * @return TarjetasXPartido
+     * @return Tarjetas
      */
     public function setPartido(\AppBundle\Entity\Partido $partido = null)
     {

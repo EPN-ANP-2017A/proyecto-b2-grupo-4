@@ -12,16 +12,31 @@
 
 {% block body %}
     <div class="container">
-        <h1>Partido edit</h1>
+        <h1>Tarjeta</h1>
 
-        {{ form_start(edit_form) }}
-        {{ form_widget(edit_form) }}
-        <input type="submit" value="Edit"/>
-        {{ form_end(edit_form) }}
+        <table>
+            <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ tarjeta.id }}</td>
+            </tr>
+            <tr>
+                <th>Amarillas</th>
+                <td>{{ tarjeta.amarillas }}</td>
+            </tr>
+            <tr>
+                <th>Rojas</th>
+                <td>{{ tarjeta.rojas }}</td>
+            </tr>
+            </tbody>
+        </table>
 
         <ul>
             <li>
-                <a href="{{ path('partido_index') }}">Back to the list</a>
+                <a href="{{ path('tarjetas_index') }}">Back to the list</a>
+            </li>
+            <li>
+                <a href="{{ path('tarjetas_edit', { 'id': tarjeta.id }) }}">Edit</a>
             </li>
             <li>
                 {{ form_start(delete_form) }}

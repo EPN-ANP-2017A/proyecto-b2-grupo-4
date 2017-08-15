@@ -97,32 +97,9 @@ class Partido
 
     /**
      * @ORM\ManyToOne(targetEntity="Equipo", inversedBy="equipos_locales")
-     * @ORM\JoinColumn(name="equipo_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="equipo_local_id", referencedColumnName="id")
      */
     private $equipo_local;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Equipo", inversedBy="equipos_visitantes")
-     * @ORM\JoinColumn(name="equipo_id", referencedColumnName="id")
-     */
-    private $equipo_visitante;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity="TarjetasXPatido", mappedBy="partido")
-//     */
-//    private $tarjetas;
-
-//    /**
-//     * @ORM\OneToMany(targetEntity = "GolesXPatido", mappedBy = "partido")
-//     */
-//    private $goles;
-//
-//
-//    public function __construct()
-//    {
-//       $this->tarjetas = new ArrayCollection();
-//        $this->goles = new ArrayCollection();
-//    }
 
     /**
      * Set equipoLocal
@@ -149,6 +126,13 @@ class Partido
     }
 
     /**
+     * @ORM\ManyToOne(targetEntity="Equipo", inversedBy="equipos_visitantes")
+     * @ORM\JoinColumn(name="equipo_visitante_id", referencedColumnName="id")
+     */
+    private $equipo_visitante;
+
+
+    /**
      * Set equipoVisitante
      *
      * @param \AppBundle\Entity\Equipo $equipoVisitante
@@ -170,5 +154,89 @@ class Partido
     public function getEquipoVisitante()
     {
         return $this->equipo_visitante;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Tarjetas", mappedBy="partido")
+     */
+    private $tarjetas;
+
+    /**
+     * Add tarjeta
+     *
+     * @param \AppBundle\Entity\Tarjetas $tarjeta
+     *
+     * @return Partido
+     */
+    public function addTarjeta(\AppBundle\Entity\Tarjetas $tarjeta)
+    {
+        $this->tarjetas[] = $tarjeta;
+
+        return $this;
+    }
+
+    /**
+     * Remove tarjeta
+     *
+     * @param \AppBundle\Entity\Tarjetas $tarjeta
+     */
+    public function removeTarjeta(\AppBundle\Entity\Tarjetas $tarjeta)
+    {
+        $this->tarjetas->removeElement($tarjeta);
+    }
+
+    /**
+     * Get tarjetas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTarjetas()
+    {
+        return $this->tarjetas;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Goles", mappedBy="partido")
+     */
+    private $goles;
+
+    public function __construct()
+    {
+        $this->tarjetas = new ArrayCollection();
+        $this->goles = new ArrayCollection();
+    }
+
+    /**
+     * Add gole
+     *
+     * @param \AppBundle\Entity\Goles $gole
+     *
+     * @return Partido
+     */
+    public function addGole(\AppBundle\Entity\Goles $gole)
+    {
+        $this->goles[] = $gole;
+
+        return $this;
+    }
+
+    /**
+     * Remove gole
+     *
+     * @param \AppBundle\Entity\Goles $gole
+     */
+    public function removeGole(\AppBundle\Entity\Goles $gole)
+    {
+        $this->goles->removeElement($gole);
+    }
+
+    /**
+     * Get goles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getGoles()
+    {
+        return $this->goles;
     }
 }

@@ -12,19 +12,22 @@
 
 {% block body %}
     <div class="container">
-        <div class="jumbotron">
-            <h1>Golesxpartido creation</h1>
+        <h1>Tarjeta edit</h1>
 
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            <input type="submit" value="Create"/>
-            {{ form_end(form) }}
+        {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Edit"/>
+        {{ form_end(edit_form) }}
 
-            <ul>
-                <li>
-                    <a href="{{ path('golesxpartido_index') }}">Back to the list</a>
-                </li>
-            </ul>
-        </div>
+        <ul>
+            <li>
+                <a href="{{ path('tarjetas_index') }}">Back to the list</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
     </div>
 {% endblock %}

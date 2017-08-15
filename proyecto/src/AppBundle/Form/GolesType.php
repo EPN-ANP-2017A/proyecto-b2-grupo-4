@@ -7,24 +7,23 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class TarjetasXPartidoType extends AbstractType
+class GolesType extends AbstractType
 {
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('tarjetasAmarillas')
-            ->add('tarjetasRojas')
+        $builder->add('numero')
             ->add('jugador', EntityType::class, array(
                 'class' => 'AppBundle:Jugador',
-                'choice_label' => 'id',
-                'placeholder' => 'Seleccione un jugador'
+                'choice_label' => 'nombre',
+                'placeholder' => 'Seleccione un Jugador'
             ))
             ->add('partido', EntityType::class, array(
                 'class' => 'AppBundle:Partido',
                 'choice_label' => 'id',
-                'placeholder' => 'Seleccione un partido'
+                'placeholder' => 'Seleccione una fecha'
             ));
     }
     
@@ -34,7 +33,7 @@ class TarjetasXPartidoType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' => 'AppBundle\Entity\TarjetasXPartido'
+            'data_class' => 'AppBundle\Entity\Goles'
         ));
     }
 
@@ -43,7 +42,7 @@ class TarjetasXPartidoType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'appbundle_tarjetasxpartido';
+        return 'appbundle_goles';
     }
 
 

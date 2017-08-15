@@ -25,7 +25,7 @@ class Equipo
     /**
      * @var string
      *
-     * @ORM\Column(name="nombre", type="string", length=30, unique=true)
+     * @ORM\Column(name="nombre", type="string", length=255)
      */
     private $nombre;
 
@@ -69,25 +69,6 @@ class Equipo
      */
     private $jugadores;
 
-
-    /**
-     * @ORM\OneToMany(targetEntity="Partido", mappedBy="equipo_local")
-     */
-    private $equipos_locales;
-
-    /**
-     * @ORM\OneToMany(targetEntity="Partido", mappedBy="equipo_visitante")
-     */
-    private $equipos_visitantes;
-
-
-    public function __construct()
-    {
-        $this->jugadores = new ArrayCollection();
-        $this->equipos_locales = new ArrayCollection();
-        $this->equipos_visitantes = new ArrayCollection();
-    }
-
     /**
      * Add jugadore
      *
@@ -123,6 +104,11 @@ class Equipo
     }
 
     /**
+     * @ORM\OneToMany(targetEntity="Partido", mappedBy="equipo_local")
+     */
+    private $equipos_locales;
+
+    /**
      * Add equiposLocale
      *
      * @param \AppBundle\Entity\Partido $equiposLocale
@@ -154,6 +140,18 @@ class Equipo
     public function getEquiposLocales()
     {
         return $this->equipos_locales;
+    }
+
+    /**
+     * @ORM\OneToMany(targetEntity="Partido", mappedBy="equipo_visitante")
+     */
+    private $equipos_visitantes;
+
+    public function __construct()
+    {
+        $this->jugadores = new ArrayCollection();
+        $this->equipos_locales = new ArrayCollection();
+        $this->equipos_visitantes = new ArrayCollection();
     }
 
     /**

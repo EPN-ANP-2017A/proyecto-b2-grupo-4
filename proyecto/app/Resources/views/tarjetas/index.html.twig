@@ -12,30 +12,30 @@
 
 {% block body %}
     <div class="container">
-        <h1>Partidos list</h1>
+        <h1>Tarjetas list</h1>
 
         <table>
             <thead>
             <tr>
                 <th>Id</th>
-                <th>Fecha</th>
-                <th>Hora</th>
+                <th>Amarillas</th>
+                <th>Rojas</th>
                 <th>Actions</th>
             </tr>
             </thead>
             <tbody>
-            {% for partido in partidos %}
+            {% for tarjeta in tarjetas %}
                 <tr>
-                    <td><a href="{{ path('partido_show', { 'id': partido.id }) }}">{{ partido.id }}</a></td>
-                    <td>{% if partido.fecha %}{{ partido.fecha|date('Y-m-d') }}{% endif %}</td>
-                    <td>{% if partido.hora %}{{ partido.hora|date('H:i:s') }}{% endif %}</td>
+                    <td><a href="{{ path('tarjetas_show', { 'id': tarjeta.id }) }}">{{ tarjeta.id }}</a></td>
+                    <td>{{ tarjeta.amarillas }}</td>
+                    <td>{{ tarjeta.rojas }}</td>
                     <td>
                         <ul>
                             <li>
-                                <a href="{{ path('partido_show', { 'id': partido.id }) }}">show</a>
+                                <a href="{{ path('tarjetas_show', { 'id': tarjeta.id }) }}">show</a>
                             </li>
                             <li>
-                                <a href="{{ path('partido_edit', { 'id': partido.id }) }}">edit</a>
+                                <a href="{{ path('tarjetas_edit', { 'id': tarjeta.id }) }}">edit</a>
                             </li>
                         </ul>
                     </td>
@@ -46,7 +46,7 @@
 
         <ul>
             <li>
-                <a href="{{ path('partido_new') }}">Create a new partido</a>
+                <a href="{{ path('tarjetas_new') }}">Create a new tarjeta</a>
             </li>
         </ul>
     </div>

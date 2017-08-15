@@ -19,12 +19,12 @@ class PartidoType extends AbstractType
             ->add('equipo_local', EntityType::class, array(
                 'class' => 'AppBundle:Equipo',
                 'choice_label' => 'nombre',
-                'placeholder' => 'Seleccione un equipo local'
+                'placeholder' => 'Seleccione el equipo local'
             ))
             ->add('equipo_visitante', EntityType::class, array(
                 'class' => 'AppBundle:Equipo',
                 'choice_label' => 'nombre',
-                'placeholder' => 'Seleccione un equipo visitante'
+                'placeholder' => 'Seleccione el equipo visitante'
             ));
     }
 

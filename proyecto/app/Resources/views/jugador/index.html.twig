@@ -12,44 +12,42 @@
 
 {% block body %}
     <div class="container">
-        <div class="jumbotron">
-            <h1>Jugadors list</h1>
+        <h1>Jugadors list</h1>
 
-            <table class="table table-bordered table-responsive">
-                <thead class="table table-bordered table-responsive">
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nombre</th>
+                <th>Numero</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for jugador in jugadors %}
                 <tr>
-                    <th>Id</th>
-                    <th>Nombre</th>
-                    <th>Numero</th>
-                    <th>Actions</th>
+                    <td><a href="{{ path('jugador_show', { 'id': jugador.id }) }}">{{ jugador.id }}</a></td>
+                    <td>{{ jugador.nombre }}</td>
+                    <td>{{ jugador.numero }}</td>
+                    <td>
+                        <ul>
+                            <li>
+                                <a href="{{ path('jugador_show', { 'id': jugador.id }) }}">show</a>
+                            </li>
+                            <li>
+                                <a href="{{ path('jugador_edit', { 'id': jugador.id }) }}">edit</a>
+                            </li>
+                        </ul>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                {% for jugador in jugadors %}
-                    <tr>
-                        <td><a href="{{ path('jugador_show', { 'id': jugador.id }) }}">{{ jugador.id }}</a></td>
-                        <td>{{ jugador.nombre }}</td>
-                        <td>{{ jugador.numero }}</td>
-                        <td>
-                            <ul>
-                                <li>
-                                    <a href="{{ path('jugador_show', { 'id': jugador.id }) }}">show</a>
-                                </li>
-                                <li>
-                                    <a href="{{ path('jugador_edit', { 'id': jugador.id }) }}">edit</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
-                {% endfor %}
-                </tbody>
-            </table>
+            {% endfor %}
+            </tbody>
+        </table>
 
-            <ul>
-                <li>
-                    <a href="{{ path('jugador_new') }}">Create a new jugador</a>
-                </li>
-            </ul>
-        </div>
+        <ul>
+            <li>
+                <a href="{{ path('jugador_new') }}">Create a new jugador</a>
+            </li>
+        </ul>
     </div>
 {% endblock %}

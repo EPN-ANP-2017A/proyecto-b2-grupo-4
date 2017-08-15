@@ -5,12 +5,12 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * GolesXPartido
+ * Goles
  *
- * @ORM\Table(name="goles_x_partido")
- * @ORM\Entity(repositoryClass="AppBundle\Repository\GolesXPartidoRepository")
+ * @ORM\Table(name="goles")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\GolesRepository")
  */
-class GolesXPartido
+class Goles
 {
     /**
      * @var int
@@ -44,7 +44,7 @@ class GolesXPartido
      *
      * @param integer $numero
      *
-     * @return GolesXPartido
+     * @return Goles
      */
     public function setNumero($numero)
     {
@@ -80,7 +80,7 @@ class GolesXPartido
      *
      * @param \AppBundle\Entity\Jugador $jugador
      *
-     * @return GolesXPartido
+     * @return Goles
      */
     public function setJugador(\AppBundle\Entity\Jugador $jugador = null)
     {
@@ -104,7 +104,7 @@ class GolesXPartido
      *
      * @param \AppBundle\Entity\Partido $partido
      *
-     * @return GolesXPartido
+     * @return Goles
      */
     public function setPartido(\AppBundle\Entity\Partido $partido = null)
     {
